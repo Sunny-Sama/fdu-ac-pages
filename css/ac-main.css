@@ -1,0 +1,49 @@
+/*.console-title.console-title-border {*/
+    /*padding: 16px 0px 13px;*/
+    /*min-height: 0px;*/
+    /*margin-bottom: 14px;*/
+    /*margin-right: 20px;*/
+/*}*/
+
+.fdu-main-left {
+    width:21%;
+    float:left;
+}
+
+.fdu-main-search {
+    padding:0;
+    height: unset;
+    border:1px solid #bbb;
+    border-bottom: none;
+}
+
+.fdu-main-catalog {
+    padding:0;
+    border:1px solid #bbb;
+    border-top-color:#e2e2e4;
+}
+
+#ac-searchKey {
+    border-radius:0 !important;
+    border: none !important;
+    width:85%;
+}
+
+#ac-standardTree {
+    border-radius:0px;
+    margin: 0;
+    width:239px;
+    overflow: hidden;
+    border:none;
+    background-color: white;
+}
+
+#ac-standardTree ul {
+    list-style-type:none;
+}
+
+#ac-tree {
+    overflow:auto;
+    padding-bottom: 15px;
+    padding-left:0px;
+}

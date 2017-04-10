@@ -1,0 +1,52 @@
+<div>
+    <!--<div class="console-title console-title-border">-->
+        <!--<h6 style="float:left;"><a href="#"><span class="fa fa-home"></span></a></h6>-->
+        <!--<h6 style="float:left;">目录管理</h6>-->
+        <!--<h6>目录权限管理</h6>-->
+    <!--</div>-->
+    <div class="fdu-main-left">
+        <div class="fdu-main-search">
+            <div class="form-horizontal" role="form">
+                <div class="input-group" style="width: 100%;">
+                    <input type="text" name="ac-searchKey" id="ac-searchKey" placeholder="搜索" class="form-control">
+                    <span><a href="#" class="btn btn-sm"><span class="fa fa-search"></span></a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="fdu-main-catalog">
+            <div id="ac-standardTree" class="tree well">
+                <ul id="ac-tree">
+                    <li ng-repeat="catalog in catalogList" ng-if="catalog.parent_id == -1">
+                        <span ng-if="hasChild(catalog.id) == true"><a ng-click="getChild(catalog.id)">+</a></span>
+                        <span ng-if="hasChild(catalog.id) == false">&nbsp&nbsp</span>
+                        <a href="">{{catalog.name}}</a>
+                        <ul ng-if="hasChild(catalog.id) == true" id="id-{{catalog.id}}"></ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="fdu-main-right">
+
+    </div>
+
+</div>
+
+<!--<script>-->
+    <!--$(function () {-->
+        <!--$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');-->
+        <!--$('.tree li.parent_li > span').on('click', function (e) {-->
+            <!--var children = $(this).parent('li.parent_li').find(' > ul > li');-->
+            <!--if (children.is(":visible")) {-->
+                <!--children.hide('fast');-->
+                <!--$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');-->
+            <!--} else {-->
+                <!--children.show('fast');-->
+                <!--$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');-->
+            <!--}-->
+            <!--e.stopPropagation();-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
