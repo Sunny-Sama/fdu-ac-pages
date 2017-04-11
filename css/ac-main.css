@@ -21,6 +21,35 @@
     padding:0;
     border:1px solid #bbb;
     border-top-color:#e2e2e4;
+    height: 700px; /*TODO: need to change*/
+
+}
+
+.ac-operator {
+    font-size: 12px;
+    color: #000000;
+    border: 1px solid #000000;
+    padding-left: 1px;
+    padding-right: 1px;
+    text-decoration: none;
+}
+
+.ac-operator:hover {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ac-catalog-name {
+    color: #777;
+}
+
+.ac-ul-list {
+    padding-left: 20px;
+}
+
+#ac-tree > li {
+    padding-bottom:5px;
 }
 
 #ac-searchKey {

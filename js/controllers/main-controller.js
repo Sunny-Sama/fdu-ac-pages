@@ -105,8 +105,10 @@ angular.module('myApp.controllers', [])
                 });
         }
 
+
+
         // 判断当前节点是否有子节点
-        $scope.hasChild = function(catalogId){
+        var hasChild = function(catalogId){
             for(var i = 0; i < $scope.catalogList.length; i++){
                 if($scope.catalogList[i].parent_id == catalogId)
                     return true;
@@ -114,23 +116,57 @@ angular.module('myApp.controllers', [])
             return false;
         }
 
+        $scope.hasChild = hasChild;
+
         // 获取当前节点的所有子节点
         $scope.getChild = function(catalogId){
-            var innerHTML = '<li>';
-            for(var i = 0; i < $scope.catalogList.length; i++){
-                var child = $scope.catalogList[i];
-                if(child.parent_id == catalogId) {
-                    if(hasChild(child.id))
-                        innerHTML += '<span><a ng-click=\"getChild('+child.id+')\">+</a></span>';
-                    else
-                        innerHTML += '<span>&nbsp&nbsp</span>';
+            //console.log(catalogId);
+            var node = document.getElementById('id-'+catalogId);
+            var anode = document.getElementById('id-a-'+catalogId);
+            anode.innerHTML = '－';
+            if(node.innerHTML.length == 0){
+                for(var i = 0; i < $scope.catalogList.length; i++){
+                    var child = $scope.catalogList[i];
+                    if(child.parent_id == catalogId) {
+                        //console.log('child=' + child.id);
+                        var li = document.createElement('li');
+                        var span = document.createElement('span');
+                        var a = document.createElement('a');
+
+                        if(hasChild(child.id)){
+                            //console.log(child.id+' has children');
+                            var currentId = child.id;
+                            a.innerHTML = '＋';
+                            a.setAttribute('id', 'id-a-'+currentId);
+                            a.setAttribute('class', 'ac-operator');
+                            a.onclick=function(){
+                                $scope.getChild(currentId);
+                            };
+                            span.appendChild(a);
+                        }
+                        else{
+                            //console.log(child.id+' does not have children');
+                            span.innerHTML = '&nbsp&nbsp&nbsp&nbsp';
+                        }
+                        li.appendChild(span);
+                        var a1 = document.createElement('a');
+                        a1.setAttribute('href', '');
+                        a1.setAttribute('class','ac-catalog-name');
+                        a1.innerHTML = child.name;
+                        li.appendChild(a1);
+
+                        if(hasChild(child.id)){
+                            var ul = document.createElement('ul');
+                            ul.setAttribute('id','id-' + child.id);
+                            ul.setAttribute('class', 'ac-ul-list');
+                            li.appendChild(ul);
+                        }
+                        node.appendChild(li);
+                    }
                 }
+            }else{
+                node.innerHTML = '';
+                anode.innerHTML = '＋';
             }
-            // document.getElementById('id-'+ catalogId).innerHTML='<li ng-repeat="ctl in childList">' +
-            //         '<span ng-if="hasChild(ctl.id) == true"><a ng-click="getChild(ctl.id)">+</a></span>'+
-            //         '<span ng-if="hasChild(ctl.id) == false">&nbsp&nbsp</span>'+
-            //         '<a href="">{{ctl.name}}</a>'+
-            //         '<ul ng-if="hasChild(ctl.id) == true" id="id-{{ctl.id}}"></ul>'+
-            //         '</li>';
         }
     });
