@@ -105,6 +105,54 @@ angular.module('myApp.controllers', [])
                 });
         }
 
+        $scope.tableList  = [
+            {
+                tableId: '0',
+                level: 6,
+                tableName: 'table0table0table0table0table0table0'
+            },
+            {
+                tableId: '1',
+                level: 5,
+                tableName: 'table1'
+            },
+            {
+                tableId: '2',
+                level: 4,
+                tableName: 'table2'
+            },
+            {
+                tableId: '3',
+                level: 3,
+                tableName: 'table3'
+            },
+            {
+                tableId: '4',
+                level: 2,
+                tableName: 'table4'
+            },
+            {
+                tableId: '5',
+                level: 1,
+                tableName: 'table5'
+            },
+            {
+                tableId: '6',
+                level: 2,
+                tableName: 'table6'
+            },
+            {
+                tableId: '7',
+                level: 3,
+                tableName: 'table7'
+            },
+            {
+                tableId: '8',
+                level: 4,
+                tableName: 'table8'
+            }
+        ];
+
 
 
         // 判断当前节点是否有子节点
