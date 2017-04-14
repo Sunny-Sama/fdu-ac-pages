@@ -34,37 +34,38 @@
             <a id="ac-search-btn" class="btn btn-sm btn-info" type="button">查询</a>
             <div style="float: right; margin-top: 4px;">
                 <span style="color: #777;">数据等级：</span>
-                <select class="ac-level-select">
-                    <option value="1" selected>1级</option>
-                    <option value="1">2级</option>
-                    <option value="1">3级</option>
-                    <option value="1">4级</option>
-                    <option value="1">5级</option>
-                    <option value="1">6级</option>
+                <select class="ac-level-select" ng-change="changeLow(low)" ng-model="low">
+                    <option value="1">1级</option>
+                    <option value="2">2级</option>
+                    <option value="3">3级</option>
+                    <option value="4">4级</option>
+                    <option value="5">5级</option>
+                    <option value="6">6级</option>
                 </select>
                 <span>&nbsp~&nbsp</span>
-                <select class="ac-level-select">
+                <select class="ac-level-select" ng-change="changeHigh(high)" ng-model="high">
                     <option value="1">1级</option>
-                    <option value="1">2级</option>
-                    <option value="1">3级</option>
-                    <option value="1">4级</option>
-                    <option value="1">5级</option>
-                    <option value="1" selected>6级</option>
+                    <option value="2">2级</option>
+                    <option value="3">3级</option>
+                    <option value="4">4级</option>
+                    <option value="5">5级</option>
+                    <option value="6">6级</option>
                 </select>
             </div>
         </div>
         <div class="fdu-main-tables">
             <div class="ac-showTables" id="ac-showTables">
-                <div class="ac-table-list" ng-repeat="table in tableList">
+                <div class="ac-table-list" ng-repeat="table in tableList" ng-show="table.level >= lowLevel && table.level <= highLevel">
                     <div style="line-height: 50px; margin-left: 15px; width: 150px; overflow: hidden; text-overflow:ellipsis; float: left;"><span>{{table.tableName}}</span></div>
                     <span style="line-height: 50px; color: #6596F8; margin-left:15px; margin-right:10px;">{{table.level}}级</span>
                     <input type="checkbox" id="ac-table-{{table.tableId}}" style="line-height: 50px; width: 15px; height: 15px;">
                 </div>
-                <div style="float: right;">
-                    <span style="color: #777; margin-left:30px; line-height:50px ;">全选</span><input type="checkbox" id="ac-select-all" style="margin-left: 5px; width: 15px; height:15px">
-                    <a class="btn btn-sm btn-info" type="button" style="margin-right:55px; margin-left:20px;">批量管理</a>
+                <div style="width: 100%;float:left">
+                    <div style="float: right;">
+                        <span style="color: #777; margin-left:30px; line-height:50px ;">全选</span><input type="checkbox" id="ac-select-all" ng-click="selectAll()" style="margin-left: 5px; width: 15px; height:15px">
+                        <a class="btn btn-sm btn-info" type="button" style="margin-right:55px; margin-left:20px;">批量管理</a>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

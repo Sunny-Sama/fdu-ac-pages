@@ -5,7 +5,20 @@ angular.module('myApp.controllers', [])
 
     .controller('acMainCtrl', function($rootScope, $scope, $http){
         $rootScope.hostUrl = 'localhost';
+        $scope.lowLevel = 1;
+        $scope.highLevel = 6;
 
+        $scope.changeLow = function(low){
+            $scope.lowLevel = low;
+        }
+
+        $scope.changeHigh = function(high){
+            $scope.highLevel = high;
+        }
+        
+        $scope.selectAll = function () {
+            console.log('selected');
+        }
 
         /*
         * 获取目录结构，节点列表
