@@ -231,9 +231,22 @@ angular.module('myApp.controllers', [])
     }
 
     $scope.searchCatalog = function(){
-        $scope.wholeList = $scope.catalogList;
-        var key = document.getElementById('ac-searchKey').value;
 
+        var searchKey = document.getElementById('ac-searchKey').value;
+        if(searchKey != null && searchKey.length >0){
+            while(searchKey.lastIndexOf(' ') >= 0){
+                searchKey = searchKey.replace(' ', '');
+            }
+            if(searchKey.length == 0){
+                // 回到整棵树的状态
+            }
+            else{
+                // 仅显示当前搜索到的节点所在的子树
+            }
+        }
+        else {
+            // 回到整棵树的状态
+        }
 
     }
 });
