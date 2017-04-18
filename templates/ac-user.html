@@ -1,27 +1,27 @@
-<div>
+<div style="margin-top: 20px;">
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion"
-                       href="#white-list">
+                       href="#ac-white-list" style="text-decoration: none">
                         白名单
                     </a>
                 </h4>
             </div>
-            <div id="white-list" class="panel-collapse collapse in">
+            <div id="ac-white-list" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="ac-operation">
                         <form role="search">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="请输入查询内容" id="whiteKeyValue">
+                                <input type="text" class="form-control" placeholder="请输入查询内容" id="ac-whiteKeyValue" style=" width: 200px;float: left;margin-right: 15px; margin-left: 20px;">
                             </div>
-                            <button type="submit" class="btn btn-default ac-search" ng-click="searchWhite()">查询</button>
-                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#addWhite">新增</a>
+                            <button type="submit" class="btn btn-sm btn-info" ng-click="searchWhite()">查询</button>
+                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#ac-addWhite">新增</a>
                         </form>
                     </div>
                     <!-- White List Modal -->
-                    <div class="modal fade" id="addWhite" role="dialog">
+                    <div class="modal fade" id="ac-addWhite" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content" style="width: 400px; margin-top: 100px">
@@ -31,21 +31,18 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="ac-p">用户名：</p>
-                                    <input type="text" id="addWhiteKey" placeholder="请输入用户名"/>
+                                    <input type="text" id="ac-addWhiteKey" placeholder="请输入用户名"/>
                                     <p></p>
-                                    <form>
-                                        <P class="ac-p">状态：</P>
-                                    </form>
-                                    <div class="error-message" id="white-error"></div>
+                                    <div class="error-message" id="ac-white-error"></div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default ac-add" ng-click="addWhite()">新增</button>
-                                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <table class="table">
+                    <table class="table" style="width:45%; float:left; margin-left:20px;" ng-if="whiteList.length > 0">
                         <thead class="ac-list">
                         <tr>
                             <th>用户名</th>
@@ -53,12 +50,28 @@
                         </tr>
                         </thead>
                         <tbody class="ac-list">
-                        <tr ng-repeat="item in whiteList">
+                        <tr ng-repeat="item in whiteList" ng-if="$index%2 == 0">
                             <th>{{item.userName}}</th>
                             <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteWhite(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
+
+                    <table class="table" style="width:45%; float: right; margin-right: 20px;" ng-if="whiteList.length > 1">
+                        <thead class="ac-list">
+                        <tr>
+                            <th>用户名</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="ac-list">
+                        <tr ng-repeat="item in whiteList" ng-if="$index%2 == 1">
+                            <th>{{item.userName}}</th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteWhite(item.ruleId)"></span></button></th>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -66,24 +79,24 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion"
-                       href="#black-list">
+                       href="#ac-black-list" style="text-decoration: none">
                         黑名单
                     </a>
                 </h4>
             </div>
-            <div id="black-list" class="panel-collapse collapse">
+            <div id="ac-black-list" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="ac-operation">
                         <form role="search">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="请输入查询内容" id="blackKeyValue">
+                                <input type="text" class="form-control" placeholder="请输入查询内容" id="ac-blackKeyValue" style=" width: 200px;float: left;margin-right: 15px">
                             </div>
-                            <button type="submit" class="btn btn-default ac-search" ng-click="searchBlack()">查询</button>
-                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#addBlack">新增</a>
+                            <button type="submit" class="btn btn-sm btn-info" ng-click="searchBlack()">查询</button>
+                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#ac-addBlack">新增</a>
                         </form>
                     </div>
                     <!-- Black List Modal -->
-                    <div class="modal fade" id="addBlack" role="dialog">
+                    <div class="modal fade" id="ac-addBlack" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content" style="width: 400px; margin-top: 100px">
@@ -93,13 +106,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="ac-p">用户名：</p>
-                                    <input type="text" id="addBlackKey" placeholder="请输入用户名"/>
+                                    <input type="text" id="ac-addBlackKey" placeholder="请输入用户名"/>
                                     <p></p>
-                                    <div class="error-message" id="black-error"></div>
+                                    <div class="error-message" id="ac-black-error"></div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default ac-add" ng-click="addBlack()">新增</button>
-                                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
                                 </div>
                             </div>
                         </div>

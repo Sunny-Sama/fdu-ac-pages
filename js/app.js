@@ -2,8 +2,8 @@
  * Created by Sunny on 2017/4/5.
  */
 var myApp = angular.module('myApp', ['ui.router', 'myApp.controllers', 'ac-manage.controllers']);
-myApp.config(['$stateProvider', '$urlRouterProvider', function ( $stateProvider, $urlRouterProvider ) {
-    $urlRouterProvider.when('','/ac-main');
+myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('', '/ac-main');
     $stateProvider
         .state('ac-main', {
             url: '/ac-main',
