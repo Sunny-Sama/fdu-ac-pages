@@ -13,20 +13,6 @@
 .ac-operation {
     margin-bottom: 20px;
 }
-.btn.btn-default.ac-search{
-    background-color: rgba(1, 178, 213, 0.83);
-    border: none;
-    color: white;
-    font-weight: bold;
-}
-
-.btn.btn-default.ac-add{
-    background-color: rgba(250, 163, 61, 0.9);
-    border: none;
-    color: white;
-    font-weight: bold;
-    margin-left:15px;
-}
 
 #ac-addWhiteKey, #ac-addBlackKey{
     width:300px;

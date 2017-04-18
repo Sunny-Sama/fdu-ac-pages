@@ -30,7 +30,7 @@
     padding:0;
     border:1px solid #bbb;
     border-top-color:#e2e2e4;
-    height: 800px; /*TODO: need to change*/
+    height: 600px; /*TODO: need to change*/
 
 }
 
@@ -64,7 +64,7 @@
 
 .ac-showTables {
     overflow:auto;
-    padding:15px 15px 15px 50px;
+    padding:15px;
 }
 
 .ac-level-select {
@@ -73,8 +73,8 @@
 }
 
 .ac-table-list{
-    width: 250px;
-    height:50px;
+    width: 275px;
+    height:70px;
     border: 1px solid #e2e2e4;
     margin: 10px;
     float: left;

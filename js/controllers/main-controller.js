@@ -183,7 +183,6 @@ angular.module('myApp.controllers', [])
 
     // 获取当前节点的所有子节点
     $scope.getChild = function(catalogId) {
-        //console.log(catalogId);
         var node = document.getElementById('id-' + catalogId);
         var anode = document.getElementById('id-a-' + catalogId);
         anode.innerHTML = '－';
@@ -207,7 +206,6 @@ angular.module('myApp.controllers', [])
                         };
                         span.appendChild(a);
                     } else {
-                        //console.log(child.id+' does not have children');
                         span.innerHTML = '&nbsp&nbsp&nbsp&nbsp';
                     }
                     li.appendChild(span);
@@ -230,5 +228,12 @@ angular.module('myApp.controllers', [])
             node.innerHTML = '';
             anode.innerHTML = '＋';
         }
+    }
+
+    $scope.searchCatalog = function(){
+        $scope.wholeList = $scope.catalogList;
+        var key = document.getElementById('ac-searchKey').value;
+
+
     }
 });
