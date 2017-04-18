@@ -3,7 +3,7 @@
  */
 angular.module('myApp.controllers', [])
 
-    .controller('acMainCtrl', function($rootScope, $scope, $http){
+    .controller('acMainCtrl', function($rootScope, $scope, $http, $location){
         $rootScope.hostUrl = 'localhost';
         $scope.lowLevel = 1;
         $scope.highLevel = 6;
@@ -15,11 +15,32 @@ angular.module('myApp.controllers', [])
         $scope.changeHigh = function(high){
             $scope.highLevel = high;
         }
-        
+        $scope.allSelected = false;
         $scope.selectAll = function () {
-            console.log('selected');
+            if($scope.allSelected == false){
+                $("input[name='ac-select-list']").attr("checked","true");
+                $scope.allSelected = true;
+            }
+            else{
+                $("input[name='ac-select-list']").removeAttr("checked");
+                $scope.allSelected = false;
+            }
+
         }
 
+        $scope.manageTable = function(){
+            var list = document.getElementsByName('ac-select-list');
+            var tableList = new Array();
+            for(var i = 0; i < list.length; i++){
+                if(list[i].checked == true)
+                    tableList.push(list[i].getAttribute('id'));
+            }
+            $rootScope.manageTableList = tableList;
+            if(tableList.length > 0)
+                $location.path('ac-manage');
+            else
+                alert('请先选择要管理的表');
+        }
         /*
         * 获取目录结构，节点列表
         * {

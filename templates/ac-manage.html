@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div>
+    <div style="margin-bottom: 20px">
+        <a ui-sref="ac-main">&lt;&lt;返回</a>
+    </div>
+    <div>
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active access-manage-title"><a ui-sref=".user" data-target="#user" data-toggle="tab">用户列表</a></li>
+            <li class="access-manage-title"><a ui-sref=".attribute" data-target="#attribute" data-toggle="tab">属性列表</a></li>
+        </ul>
+        <div ui-view class="tab-content">
+        </div>
+    </div>
+</div>

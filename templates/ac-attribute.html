@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div>
+    <span style="color: gray;">*满足以下属性的用户将被允许访问目标数据</span>
+    <div class="ac-operation">
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="请输入查询内容" id="attrKeyValue">
+            </div>
+            <button type="submit" class="btn btn-default ac-search" ng-click="searchAttr()">查询</button>
+            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#addAttr">新增</a>
+        </form>
+    </div>
+    <!-- Attribute List Modal -->
+    <div class="modal fade" id="addAttr" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 400px; margin-top: 100px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center">添加属性</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="ac-p">选择用户角色：</p>
+                    <form>
+                        <select name="roles" id="addAttrRole">
+                            <option value="tenant">租户</option>
+                            <option value="administrator">管理员</option>
+                        </select>
+                    </form>
+                    <p></p>
+                    <p class="ac-p">选择使用时间：</p>
+                    <div class="ac-div">
+                        开始时间<input type="time" name="startTime" value="00:00" style="width: 100px; margin-left:20px;"/>
+                        <p></p>
+                        结束时间<input type="time" name="endTime" value="23:59" style="width: 100px; margin-left:20px;"/>
+                        <p></p>
+                    </div>
+                    <form>
+                        <P class="ac-p">状态：</P>
+                        <div class="ac-div">
+                            <input type="radio" name="state" value="force" style="margin-right:5px;"/>强制
+                            <input type="radio" checked="checked" name="state" value="recommend" style="margin-left: 20px; margin-right:5px;"/>推荐
+                        </div>
+                    </form>
+                    <div class="error-message" id="attr-error"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default ac-add" ng-click="addAttr()">新增</button>
+                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="ac-list">
+        <tr>
+            <th>角色</th>
+            <th>使用时间</th>
+            <th>状态改变</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody class="ac-list">
+        <tr ng-repeat="item in attrList">
+            <th>{{item.userRole==0?"管理员":"租户"}}</th>
+            <th>{{item.startTime}}-{{item.endTime}}</th>
+            <th style="padding-left:18px"><button class="ac-state" ng-click="changeState(item.ruleId)">{{item.state==1?"强制":"推荐"}}</button></th>
+            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteAttr(item.ruleId)"></span></button></th>
+        </tr>
+        </tbody>
+    </table>
+</div>

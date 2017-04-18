@@ -1,10 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#white-list">
+                        白名单
+                    </a>
+                </h4>
+            </div>
+            <div id="white-list" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="ac-operation">
+                        <form role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="请输入查询内容" id="whiteKeyValue">
+                            </div>
+                            <button type="submit" class="btn btn-default ac-search" ng-click="searchWhite()">查询</button>
+                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#addWhite">新增</a>
+                        </form>
+                    </div>
+                    <!-- White List Modal -->
+                    <div class="modal fade" id="addWhite" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="width: 400px; margin-top: 100px">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="text-align: center">添加用户</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="ac-p">用户名：</p>
+                                    <input type="text" id="addWhiteKey" placeholder="请输入用户名"/>
+                                    <p></p>
+                                    <form>
+                                        <P class="ac-p">状态：</P>
+                                    </form>
+                                    <div class="error-message" id="white-error"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default ac-add" ng-click="addWhite()">新增</button>
+                                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead class="ac-list">
+                        <tr>
+                            <th>用户名</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="ac-list">
+                        <tr ng-repeat="item in whiteList">
+                            <th>{{item.userName}}</th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteWhite(item.ruleId)"></span></button></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#black-list">
+                        黑名单
+                    </a>
+                </h4>
+            </div>
+            <div id="black-list" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="ac-operation">
+                        <form role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="请输入查询内容" id="blackKeyValue">
+                            </div>
+                            <button type="submit" class="btn btn-default ac-search" ng-click="searchBlack()">查询</button>
+                            <a class="btn btn-default ac-add" data-toggle="modal" data-target="#addBlack">新增</a>
+                        </form>
+                    </div>
+                    <!-- Black List Modal -->
+                    <div class="modal fade" id="addBlack" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="width: 400px; margin-top: 100px">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="text-align: center">添加用户</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="ac-p">用户名：</p>
+                                    <input type="text" id="addBlackKey" placeholder="请输入用户名"/>
+                                    <p></p>
+                                    <div class="error-message" id="black-error"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default ac-add" ng-click="addBlack()">新增</button>
+                                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead class="ac-list">
+                        <tr>
+                            <th>用户名</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="ac-list">
+                        <tr ng-repeat="item in blackList">
+                            <th>{{item.userName}}</th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteBlack(item.ruleId)"></span></button></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
