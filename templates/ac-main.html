@@ -8,8 +8,8 @@
         <div class="fdu-main-search">
             <div class="form-horizontal" role="form">
                 <div class="input-group" style="width: 100%;">
-                    <input type="text" name="ac-searchKey" id="ac-searchKey" placeholder="搜索" class="form-control" ng-click="searchCatalog()">
-                    <span><a href="#" class="btn btn-sm"><span class="fa fa-search"></span></a></span>
+                    <input type="text" name="ac-searchKey" id="ac-searchKey" placeholder="搜索" class="form-control">
+                    <span><a href="#" class="btn btn-sm"  ng-click="searchCatalog()"><span class="fa fa-search"></span></a></span>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
     <div class="fdu-main-right">
         <div class="fdu-main-input">
             <input id="ac-tb-search" class="form-control" type="text" placeholder="请输入表名搜索">
-            <a id="ac-search-btn" class="btn btn-sm btn-info" type="button">查询</a>
+            <a id="ac-search-btn" class="btn btn-sm btn-info" type="button" ng-click="searchTable()">查询</a>
             <div style="float: right; margin-top: 4px;">
                 <span style="color: #777;">数据等级：</span>
                 <select class="ac-level-select" ng-change="changeLow(low)" ng-model="low">

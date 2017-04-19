@@ -29,14 +29,15 @@ angular.module('myApp.controllers', [])
 
     $scope.manageTable = function() {
             var list = document.getElementsByName('ac-select-list');
-            var tableList = new Array();
+            var tables = '';
             for (var i = 0; i < list.length; i++) {
                 if (list[i].checked == true)
-                    tableList.push(list[i].getAttribute('id'));
+                    tables += list[i].getAttribute('id') + '/';
             }
-            $rootScope.manageTableList = tableList;
-            if (tableList.length > 0)
+            if (tables.length > 0){
+                $rootScope.selectedTables = tables;
                 $location.path('ac-manage');
+            }
             else
                 alert('请先选择要管理的表');
         }
@@ -104,7 +105,9 @@ angular.module('myApp.controllers', [])
         id: 10,
         name: '节点3-0-1',
         parent_id: 8
-    }]
+    }];
+
+    var wholeList = $scope.catalogList;
 
     /*
      *获取当前节点下的表格列表
@@ -196,7 +199,6 @@ angular.module('myApp.controllers', [])
                     var a = document.createElement('a');
 
                     if (hasChild(child.id)) {
-                        //console.log(child.id+' has children');
                         var currentId = child.id;
                         a.innerHTML = '＋';
                         a.setAttribute('id', 'id-a-' + currentId);
@@ -228,7 +230,7 @@ angular.module('myApp.controllers', [])
             node.innerHTML = '';
             anode.innerHTML = '＋';
         }
-    }
+    };
 
     $scope.searchCatalog = function(){
 
@@ -238,15 +240,33 @@ angular.module('myApp.controllers', [])
                 searchKey = searchKey.replace(' ', '');
             }
             if(searchKey.length == 0){
-                // 回到整棵树的状态
+                $scope.catalogList = wholeList;
             }
             else{
-                // 仅显示当前搜索到的节点所在的子树
+               //TODO：更新目录树结构
             }
         }
         else {
-            // 回到整棵树的状态
+            $scope.catalogList = wholeList;
         }
 
+    }
+
+    $scope.searchTable = function(){
+        var searchKey = document.getElementById('ac-tb-search').value;
+        if(searchKey != null && searchKey.length >0){
+            while(searchKey.lastIndexOf(' ') >= 0){
+                searchKey = searchKey.replace(' ', '');
+            }
+            if(searchKey.length == 0){
+                alert('请输入表格名');
+            }
+            else{
+                //TODO：通过服务器获取相应表格
+            }
+        }
+        else {
+            alert('请输入表格名');
+        }
     }
 });
