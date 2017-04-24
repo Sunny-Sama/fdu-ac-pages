@@ -16,6 +16,7 @@
 }
 
 .ac-mng-name + a {
+    color: #bbb;
     font-weight: bold;
     padding-left:15px;
     line-height:30px;
