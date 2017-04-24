@@ -2,6 +2,13 @@
     <div style="margin-bottom: 20px">
         <a ui-sref="ac-main">&lt;&lt;返回上一页</a>
     </div>
+    <div style="width: 100%; float: left; margin-bottom: 20px;">
+        <p style="color: #777; font-size: 1.2em; padding-left:10px;">已选数据源</p>
+            <div ng-repeat="table in selectedTables" class="ac-mng-table">
+                <div class="ac-mng-name"><span>{{table.tableName}}</span></div>
+                <a ng-click="deleteSelectedTable(table.tableId)">X</a>
+            </div>
+    </div>
     <div>
         <ul id="myTab" class="nav nav-tabs">
             <li class="active access-manage-title"><a ui-sref=".user" data-target="#user" data-toggle="tab" style="color: #777;">用户列表</a></li>

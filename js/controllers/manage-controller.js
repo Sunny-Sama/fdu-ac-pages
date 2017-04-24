@@ -3,6 +3,15 @@
  */
 angular.module('ac-manage.controllers', [])
     .controller('acUserCtrl', function($rootScope, $scope, $http) {
+
+        $rootScope.deleteSelectedTable = function(id){
+            for(var i = 0; i < $rootScope.selectedTables.length; i++){
+                if($rootScope.selectedTables[i].tableId == id){
+                    $rootScope.selectedTables.splice(i, 1);
+                }
+            }
+        };
+
         $scope.whiteList = [{
             ruleId: '0',
             userName: 'user1' //可以是用户名也可以是用户id
@@ -30,7 +39,7 @@ angular.module('ac-manage.controllers', [])
 
         var getWhiteList = function() {
             //添加tableList参数
-            $http.get('http://' + $rootScope.hostUrl + '8080/program_name/package_name/getWhiteList', {param: {tables: $rootScope.selectedTables}})
+            $http.get('http://' + $rootScope.hostUrl + '8080/program_name/package_name/getWhiteList')
                 .success(function(ret) {
                     if (ret != null && ret[0] != null) {
                         $scope.whiteList = ret;
@@ -44,7 +53,7 @@ angular.module('ac-manage.controllers', [])
         }
 
         var getBlackList = function() {
-            $http.get('http://' + $rootScope.hostUrl + '8080/DataACServer/getBlackList', {param: {tables: $rootScope.selectedTables}})
+            $http.get('http://' + $rootScope.hostUrl + '8080/DataACServer/getBlackList')
                 .success(function(ret) {
                     if (ret != null && ret[0] != null) {
                         $scope.blackList = ret;

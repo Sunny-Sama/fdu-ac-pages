@@ -29,10 +29,10 @@ angular.module('myApp.controllers', [])
 
     $scope.manageTable = function() {
             var list = document.getElementsByName('ac-select-list');
-            var tables = '';
+            var tables = new Array();
             for (var i = 0; i < list.length; i++) {
                 if (list[i].checked == true)
-                    tables += list[i].getAttribute('id') + '/';
+                    tables.push(getTableById(list[i].getAttribute('id')));
             }
             if (tables.length > 0){
                 $rootScope.selectedTables = tables;
@@ -40,7 +40,15 @@ angular.module('myApp.controllers', [])
             }
             else
                 alert('请先选择要管理的表');
+        };
+
+    var getTableById = function(id){
+        for(var i = 0; i < $scope.tableList.length; i++){
+            if($scope.tableList[i].tableId == id){
+                return $scope.tableList[i];
+            }
         }
+    }
         /*
          * 获取目录结构，节点列表
          * {
@@ -59,7 +67,7 @@ angular.module('myApp.controllers', [])
                 var error = '';
                 alert('http error: ' + error);
             });
-    }
+    };
 
     $scope.catalogList = [{
         id: 0,
