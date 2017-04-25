@@ -4,14 +4,6 @@
 angular.module('ac-manage.controllers', [])
     .controller('acUserCtrl', function($rootScope, $scope, $http) {
 
-        $rootScope.deleteSelectedTable = function(id){
-            for(var i = 0; i < $rootScope.selectedTables.length; i++){
-                if($rootScope.selectedTables[i].tableId == id){
-                    $rootScope.selectedTables.splice(i, 1);
-                }
-            }
-        };
-
         $scope.whiteList = [{
             ruleId: '0',
             userName: 'user1' //可以是用户名也可以是用户id

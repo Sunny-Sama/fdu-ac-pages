@@ -16,10 +16,8 @@
 }
 
 .ac-mng-name + a {
-    color: #bbb;
-    font-weight: bold;
-    padding-left:15px;
+    color: #6596F8;
+    padding-left:5px;
     line-height:30px;
     text-decoration: none;
-    cursor: pointer;
 }
