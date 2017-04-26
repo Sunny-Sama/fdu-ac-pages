@@ -58,7 +58,7 @@ angular.module('myApp.controllers', [])
          *  }
          * */
     var getCatalogList = function() {
-        $http.get('http://' + $rootScope.hostUrl + '8080/program_name/package_name/getCatalogList')
+        $http.get('http://' + $rootScope.hostUrl + ':8080/program_name/package_name/getCatalogList')
             .success(function(ret) {
                 //TODO
             })
@@ -126,7 +126,7 @@ angular.module('myApp.controllers', [])
      * }
      * */
     var getTableList = function(catalogId) {
-        $http.get('http://' + $rootScope.hostUrl + '8080/program_name/package_name/getTableListByCtl', {
+        $http.get('http://' + $rootScope.hostUrl + ':8080/program_name/package_name/getTableListByCtl', {
                 param: {
                     catalogId: catalogId
                 }

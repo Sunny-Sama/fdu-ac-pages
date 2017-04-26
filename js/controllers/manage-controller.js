@@ -43,7 +43,7 @@ angular.module('ac-manage.controllers', [])
         // 获取当前表格的白名单列表
         var getWhiteList = function() {
             var tables = getTableIdList();
-            $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/getWhiteList', {param: {tableIds: tables}})
+            $http.get('http://' + $rootScope.hostUrl + ':8080/springTest/getWhiteList', {params: {tableIds: tables}})
                 .success(function(ret) {
                     if (ret != null && ret[0] != null) {
                         $scope.whiteList = ret;
@@ -55,11 +55,13 @@ angular.module('ac-manage.controllers', [])
                 .error(function() {
                     alert('http error: 不能获取白名单');
                 });
-        }
+        };
+
+        getWhiteList();
 
         var getBlackList = function() {
             var tables = getTableIdList();
-            $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/getBlackList', {param: {tableIds: tables}})
+            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/getBlackList', {params: {tableIds: tables}})
                 .success(function(ret) {
                     if (ret != null && ret[0] != null) {
                         $scope.blackList = ret;
@@ -134,7 +136,7 @@ angular.module('ac-manage.controllers', [])
                 }
                 else{
                     document.getElementById('ac-white-error').innerHTML = '';
-                    $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/addWhiteList', {param: {tableIds: tables, userKey: userKey}})
+                    $http.get('http://' + $rootScope.hostUrl + ':s8080/fdu_ac_service/addWhiteList', {params: {tableIds: tables, userKey: userKey}})
                         .success(function(ret) {
                             // if user is invalid
                             // if whiteList already exists
@@ -162,7 +164,7 @@ angular.module('ac-manage.controllers', [])
                 }
                 else{
                     document.getElementById('ac-black-error').innerHTML = '';
-                    $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/addBlackList', {param: {tableIds: tables, userKey: userKey}})
+                    $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/addBlackList', {params: {tableIds: tables, userKey: userKey}})
                         .success(function(ret) {
                             // if user is invalid
                             // if whiteList already exists
@@ -179,7 +181,7 @@ angular.module('ac-manage.controllers', [])
         }
 
         $scope.deleteWhite = function(ruleId) {
-            $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/deleteWhiteList', {param: {ruleId: ruleId}})
+            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/deleteWhiteList', {params: {ruleId: ruleId}})
                 .success(function(ret) {
 
                 })
@@ -189,7 +191,7 @@ angular.module('ac-manage.controllers', [])
         }
 
         $scope.deleteBlack = function(ruleId){
-            $http.get('http://' + $rootScope.hostUrl + '8080/fdu_ac_service/deleteBlackList', {param: {ruleId: ruleId}})
+            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/deleteBlackList', {params: {ruleId: ruleId}})
                 .success(function(ret) {
 
                 })
