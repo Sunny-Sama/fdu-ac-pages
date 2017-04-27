@@ -136,14 +136,22 @@ angular.module('ac-manage.controllers', [])
                 }
                 else{
                     document.getElementById('ac-white-error').innerHTML = '';
-                    $http.get('http://' + $rootScope.hostUrl + ':s8080/fdu_ac_service/addWhiteList', {params: {tableIds: tables, userKey: userKey}})
+                    $http.get('http://' + $rootScope.hostUrl + ':8080/program_name/package_name/getUserInfo', {params: {keyValue: userKey}})
                         .success(function(ret) {
-                            // if user is invalid
-                            // if whiteList already exists
-                            // if success
+                            if(ret[3] != null && ret[3].length != 0){
+                                $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/addWhiteList', {params: {tableIds: tables, catalogId: $rootScope.catalogId, userId: ret[3][0]}})
+                                    .success(function(ret0) {
+                                        // if whiteList already exists
+                                        // if success
+                                    })
+                                    .error(function() {
+                                        alert('http error: 不能添加新的白名单');
+                                    });
+                            }else
+                                document.getElementById('ac-white-error').innerHTML = '用户不存在';
                         })
                         .error(function() {
-                            alert('http error: 不能添加新的白名单');
+                            alert('http error: 不能获取用户信息');
                         });
                 }
             }
@@ -164,14 +172,22 @@ angular.module('ac-manage.controllers', [])
                 }
                 else{
                     document.getElementById('ac-black-error').innerHTML = '';
-                    $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/addBlackList', {params: {tableIds: tables, userKey: userKey}})
+                    $http.get('http://' + $rootScope.hostUrl + ':8080/program_name/package_name/getUserInfo', {params: {keyValue: userKey}})
                         .success(function(ret) {
-                            // if user is invalid
-                            // if whiteList already exists
-                            // if success
+                            if(ret[3] != null && ret[3].length != 0){
+                                $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/addBlackList', {params: {tableIds: tables, catalogId: $rootScope.catalogId, userId: ret[3][0]}})
+                                    .success(function(ret0) {
+                                        // if blackList already exists
+                                        // if success
+                                    })
+                                    .error(function() {
+                                        alert('http error: 不能添加新的黑名单');
+                                    });
+                            }else
+                                document.getElementById('ac-black-error').innerHTML = '用户不存在';
                         })
                         .error(function() {
-                            alert('http error: 不能添加新的黑名单');
+                            alert('http error: 不能获取用户信息');
                         });
                 }
             }
@@ -180,23 +196,13 @@ angular.module('ac-manage.controllers', [])
             }
         }
 
-        $scope.deleteWhite = function(ruleId) {
-            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/deleteWhiteList', {params: {ruleId: ruleId}})
+        $scope.deleteRule = function(ruleId) {
+            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/deleteRule', {params: {ruleId: ruleId}})
                 .success(function(ret) {
 
                 })
                 .error(function() {
-                    alert('http error: 不能删除白名单');
-                });
-        }
-
-        $scope.deleteBlack = function(ruleId){
-            $http.get('http://' + $rootScope.hostUrl + ':8080/fdu_ac_service/deleteBlackList', {params: {ruleId: ruleId}})
-                .success(function(ret) {
-
-                })
-                .error(function() {
-                    alert('http error: 不能删除黑名单');
+                    alert('http error: 不能删除当前策略');
                 });
         }
     })

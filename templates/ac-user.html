@@ -56,7 +56,7 @@
                         <tbody class="ac-list">
                         <tr ng-repeat="item in whiteList" ng-if="$index%2 == 0">
                             <th>{{item.userName}}</th>
-                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteWhite(item.ruleId)"></span></button></th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
@@ -71,7 +71,7 @@
                         <tbody class="ac-list">
                         <tr ng-repeat="item in whiteList" ng-if="$index%2 == 1">
                             <th>{{item.userName}}</th>
-                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteWhite(item.ruleId)"></span></button></th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
@@ -134,7 +134,7 @@
                         <tbody class="ac-list">
                         <tr ng-repeat="item in blackList" ng-if="$index%2 == 0">
                             <th>{{item.userName}}</th>
-                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteBlack(item.ruleId)"></span></button></th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
@@ -148,7 +148,7 @@
                         <tbody class="ac-list">
                         <tr ng-repeat="item in blackList" ng-if="$index%2 == 1">
                             <th>{{item.userName}}</th>
-                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteBlack(item.ruleId)"></span></button></th>
+                            <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>

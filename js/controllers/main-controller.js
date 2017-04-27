@@ -5,6 +5,7 @@ angular.module('myApp.controllers', [])
 
 .controller('acMainCtrl', function($rootScope, $scope, $http, $location) {
     $rootScope.hostUrl = 'localhost';
+    $rootScope.catalogId = 1;
     $scope.lowLevel = 1;
     $scope.highLevel = 6;
 
