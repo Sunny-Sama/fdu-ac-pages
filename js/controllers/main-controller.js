@@ -149,11 +149,11 @@ angular.module('myApp.controllers', [])
     }, {
         tableId: '1',
         level: 5,
-        tableName: 'table1'
+        tableName: 'table1table1table1table1'
     }, {
         tableId: '2',
         level: 4,
-        tableName: 'table2'
+        tableName: 'table2table2table2table2table2'
     }, {
         tableId: '3',
         level: 3,
@@ -161,11 +161,11 @@ angular.module('myApp.controllers', [])
     }, {
         tableId: '4',
         level: 2,
-        tableName: 'table4'
+        tableName: 'table4table4'
     }, {
         tableId: '5',
         level: 1,
-        tableName: 'table5'
+        tableName: 'table5table5table5'
     }, {
         tableId: '6',
         level: 2,
@@ -177,7 +177,19 @@ angular.module('myApp.controllers', [])
     }, {
         tableId: '8',
         level: 4,
-        tableName: 'table8'
+        tableName: 'table8table8table8table8'
+    }, {
+        tableId: '9',
+        level: 2,
+        tableName: '数据资源9'
+    }, {
+        tableId: '10',
+        level: 5,
+        tableName: '数据资源10'
+    }, {
+        tableId: '11',
+        level: 3,
+        tableName: '数据资源11: table11'
     }];
 
 
