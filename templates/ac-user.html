@@ -76,12 +76,14 @@
                     <table class="table" style="width:45%; float:left; margin-left:20px;" ng-if="whiteList.length > 0">
                         <thead class="ac-list">
                         <tr>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody class="ac-list">
                         <tr ng-repeat="item in whiteList" ng-if="$index%2 == 0">
+                            <th>{{item.userId}}</th>
                             <th>{{item.userName}}</th>
                             <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
@@ -91,18 +93,20 @@
                     <table class="table" style="width:45%; float: right; margin-right: 20px;" ng-if="whiteList.length > 1">
                         <thead class="ac-list">
                         <tr>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody class="ac-list">
                         <tr ng-repeat="item in whiteList" ng-if="$index%2 == 1">
+                            <th>{{item.userId}}</th>
                             <th>{{item.userName}}</th>
                             <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
-
+                    <div ng-if="whiteList.length == 0" style="color: red; margin-left:20px; font-size: 1.1em"><p>还没有相应白名单，请先添加白名单</p></div>
                 </div>
             </div>
         </div>
@@ -151,34 +155,39 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table" style="width:45%; float:left; margin-left:20px;" ng-if="whiteList.length > 0">
+                    <table class="table" style="width:45%; float:left; margin-left:20px;" ng-if="blackList.length > 0">
                         <thead class="ac-list">
                         <tr>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody class="ac-list">
                         <tr ng-repeat="item in blackList" ng-if="$index%2 == 0">
+                            <th>{{item.userId}}</th>
                             <th>{{item.userName}}</th>
                             <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
-                    <table class="table" style="width:45%; float: right; margin-right: 20px;" ng-if="whiteList.length > 1">
+                    <table class="table" style="width:45%; float: right; margin-right: 20px;" ng-if="blackList.length > 1">
                         <thead class="ac-list">
                         <tr>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody class="ac-list">
                         <tr ng-repeat="item in blackList" ng-if="$index%2 == 1">
+                            <th>{{item.userId}}</th>
                             <th>{{item.userName}}</th>
                             <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRule(item.ruleId)"></span></button></th>
                         </tr>
                         </tbody>
                     </table>
+                    <div ng-if="blackList.length == 0" style="color: red; margin-left:20px; font-size: 1.1em"><p>还没有相应黑名单，请先添加黑名单</p></div>
                 </div>
             </div>
         </div>
