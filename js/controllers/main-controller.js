@@ -29,27 +29,26 @@ angular.module('myApp.controllers', [])
     }
 
     $scope.manageTable = function() {
-            var list = document.getElementsByName('ac-select-list');
-            var tables = new Array();
-            for (var i = 0; i < list.length; i++) {
-                if (list[i].checked == true)
-                    tables.push(getTableById(list[i].getAttribute('id')));
-            }
-            if (tables.length > 0){
-                $rootScope.selectedTables = tables;
-                $location.path('ac-manage');
-            }
-            else
-                alert('请先选择要管理的表');
-        };
+        var list = document.getElementsByName('ac-select-list');
+        var tables = new Array();
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].checked == true)
+                tables.push(getTableById(list[i].getAttribute('id')));
+        }
+        if (tables.length > 0) {
+            $rootScope.selectedTables = tables;
+            $location.path('ac-manage');
+        } else
+            alert('请先选择要管理的表');
+    };
 
-    var getTableById = function(id){
-        for(var i = 0; i < $scope.tableList.length; i++){
-            if($scope.tableList[i].tableId == id){
-                return $scope.tableList[i];
+    var getTableById = function(id) {
+            for (var i = 0; i < $scope.tableList.length; i++) {
+                if ($scope.tableList[i].tableId == id) {
+                    return $scope.tableList[i];
+                }
             }
         }
-    }
         /*
          * 获取目录结构，节点列表
          * {
@@ -256,37 +255,33 @@ angular.module('myApp.controllers', [])
     $scope.searchCatalog = function(){
 
         var searchKey = document.getElementById('ac-searchKey').value;
-        if(searchKey != null && searchKey.length >0){
-            while(searchKey.lastIndexOf(' ') >= 0){
+        if (searchKey != null && searchKey.length > 0) {
+            while (searchKey.lastIndexOf(' ') >= 0) {
                 searchKey = searchKey.replace(' ', '');
             }
-            if(searchKey.length == 0){
+            if (searchKey.length == 0) {
                 $scope.catalogList = wholeList;
+            } else {
+                //TODO：更新目录树结构
             }
-            else{
-               //TODO：更新目录树结构
-            }
-        }
-        else {
+        } else {
             $scope.catalogList = wholeList;
         }
 
     }
 
-    $scope.searchTable = function(){
+    $scope.searchTable = function() {
         var searchKey = document.getElementById('ac-tb-search').value;
-        if(searchKey != null && searchKey.length >0){
-            while(searchKey.lastIndexOf(' ') >= 0){
+        if (searchKey != null && searchKey.length > 0) {
+            while (searchKey.lastIndexOf(' ') >= 0) {
                 searchKey = searchKey.replace(' ', '');
             }
-            if(searchKey.length == 0){
+            if (searchKey.length == 0) {
                 alert('请输入表格名');
-            }
-            else{
+            } else {
                 //TODO：通过服务器获取相应表格
             }
-        }
-        else {
+        } else {
             alert('请输入表格名');
         }
     }
