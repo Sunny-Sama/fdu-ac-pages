@@ -118,7 +118,7 @@ angular.module('ac-manage.controllers', [])
                 } else {
                     var tmp = new Array();
                     for (var i = 0; i < $scope.wholeBlack.length; i++) {
-                        if (($scope.wholeWhite[i].userId + '').indexOf(searchKey) >= 0 || $scope.wholeBlack[i].userName.indexOf(searchKey) >= 0) {
+                        if (($scope.wholeBlack[i].userId + '').indexOf(searchKey) >= 0 || $scope.wholeBlack[i].userName.indexOf(searchKey) >= 0) {
                             tmp.push($scope.wholeBlack[i]);
                         }
                     }

@@ -52,6 +52,7 @@
 
     .ac-catalog-name {
         color: #777;
+        text-decoration: none;
     }
 
     .ac-ul-list {
@@ -148,7 +149,7 @@
                     <li ng-repeat="catalog in catalogList" ng-if="catalog.parent_id == -1">
                         <span ng-if="hasChild(catalog.id) == true"><a ng-click="getChild(catalog.id)" id="id-a-{{catalog.id}}" class="ac-operator">＋</a></span>
                         <span ng-if="hasChild(catalog.id) == false">&nbsp&nbsp&nbsp&nbsp</span>
-                        <a href="" class="ac-catalog-name">{{catalog.name}}</a>
+                        <a href="" class="ac-catalog-name" ng-click="getTables(catalog.id)">{{catalog.name}}</a>
                         <ul ng-if="hasChild(catalog.id) == true" id="id-{{catalog.id}}" class="ac-ul-list"></ul>
                     </li>
                 </ul>
