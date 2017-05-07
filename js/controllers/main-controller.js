@@ -43,12 +43,20 @@ angular.module('myApp.controllers', [])
 	};
 
 	var getTableById = function(id) {
-		for (var i = 0; i < $scope.tableList.length; i++) {
-			if ($scope.tableList[i].tableId == id) {
-				return $scope.tableList[i];
+		for (var i = 0; i < $scope.wholeTables.length; i++) {
+			if ($scope.wholeTables[i].tableId == id) {
+				return $scope.wholeTables[i];
 			}
 		}
 	};
+
+	var getCatalogById = function (id) {
+        for (var i = 0; i < $scope.wholeCatalogs.length; i++) {
+            if ($scope.wholeCatalogs[i].id == id) {
+                return $scope.wholeCatalogs[i];
+            }
+        }
+    }
 
 
 	/*
@@ -91,7 +99,7 @@ angular.module('myApp.controllers', [])
 			.success(function(ret) {
 				if (ret.code == 200 && ret.catalogList != null && ret.catalogList.length != 0) {
 					$scope.catalogList = JSON.parse(ret.catalogList);
-					$scope.wholeCatalog = JSON.parse(ret.catalogList);
+					$scope.wholeCatalogs = JSON.parse(ret.catalogList);
 					for (var i = 0; i < $scope.catalogList.length; i++) {
 						if ($scope.catalogList[i].parent_id == -1) {
 							$scope.getTables($scope.catalogList[i].id);
@@ -133,7 +141,7 @@ angular.module('myApp.controllers', [])
 		parent_id: 0
 	}, {
 		id: 6,
-		name: '节点0-1',
+		name: '节点0-2',
 		parent_id: 0
 	}, {
 		id: 7,
@@ -203,7 +211,7 @@ angular.module('myApp.controllers', [])
 		tableName: '数据资源11: table11'
 	}];
 
-    $scope.wholeCatalog = $scope.catalogList;
+    $scope.wholeCatalogs = $scope.catalogList;
     $scope.wholeTables = $scope.tableList;
 
 
@@ -266,20 +274,42 @@ angular.module('myApp.controllers', [])
 		}
 	};
 
-	$scope.searchCatalog = function() {
+	var exist = function(node, array){
+		for(var i = 0; i < array.length; i++){
+			if(array[i].id == node.id){
+				return true;
+			}
+		}
+		return false;
+	}
 
+	$scope.searchCatalog = function() {
+        $scope.catalogList = null;
 		var searchKey = document.getElementById('ac-searchKey').value;
 		if (searchKey != null && searchKey.length > 0) {
 			while (searchKey.lastIndexOf(' ') >= 0) {
 				searchKey = searchKey.replace(' ', '');
 			}
 			if (searchKey.length == 0) {
-				$scope.catalogList = $scope.catalogList;
+				$scope.catalogList = $scope.wholeCatalogs;
 			} else {
-				//TODO：更新目录树结构
+				var tmp = new Array();
+				for(var i = 0; i < $scope.wholeCatalogs.length; i++){
+					if($scope.wholeCatalogs[i].name.indexOf(searchKey) >= 0){
+						var node = $scope.wholeCatalogs[i];
+						while(node.parent_id != -1){
+                            if(!exist(node,tmp))
+                                tmp.push(node);
+                            node = getCatalogById(node.parent_id);
+						}
+                        if(!exist(node,tmp))
+                            tmp.push(node);
+					}
+				}
+				$scope.catalogList = tmp;
 			}
 		} else {
-			$scope.catalogList = $scope.catalogList;
+			$scope.catalogList = $scope.wholeCatalogs;
 		}
 
 	}
