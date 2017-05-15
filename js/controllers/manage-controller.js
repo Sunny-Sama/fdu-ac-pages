@@ -12,33 +12,33 @@ angular.module('ac-manage.controllers', [])
             return tableIds;
         }
 
-        // $scope.whiteList = [{
-        //     ruleId: '0',
-        //     userId: 'user1' //可以是用户名也可以是用户id
-        // }, {
-        //     ruleId: '1',
-        //     userId: 'user2'
-        // }, {
-        //     ruleId: '2',
-        //     userId: 'user3'
-        // }, {
-        //     ruleId: '3',
-        //     userId: 'user4'
-        // }];
-        //
-        // $scope.blackList = [{
-        //     ruleId: '6',
-        //     userId: 'user5'
-        // }, {
-        //     ruleId: '7',
-        //     userId: 'user6'
-        // }, {
-        //     ruleId: '8',
-        //     userId: 'user7'
-        // } ];
-        //
-        // $scope.wholeWhite = $scope.whiteList;
-        // $scope.wholeBlack = $scope.blackList;
+        $scope.whiteList = [{
+            ruleId: '0',
+            userId: 'user1' //可以是用户名也可以是用户id
+        }, {
+            ruleId: '1',
+            userId: 'user2'
+        }, {
+            ruleId: '2',
+            userId: 'user3'
+        }, {
+            ruleId: '3',
+            userId: 'user4'
+        }];
+
+        $scope.blackList = [{
+            ruleId: '6',
+            userId: 'user5'
+        }, {
+            ruleId: '7',
+            userId: 'user6'
+        }, {
+            ruleId: '8',
+            userId: 'user7'
+        } ];
+
+        $scope.wholeWhite = $scope.whiteList;
+        $scope.wholeBlack = $scope.blackList;
 
         // 获取当前表格的白名单列表
         var getWhiteList = function() {
@@ -82,8 +82,8 @@ angular.module('ac-manage.controllers', [])
         };
 
         // 获取当前table的白名单和黑名单
-        getWhiteList();
-        getBlackList();
+        // getWhiteList();
+        // getBlackList();
 
         $scope.searchWhite = function() {
             var searchKey = document.getElementById('ac-whiteKeyValue').value;
@@ -254,7 +254,37 @@ angular.module('ac-manage.controllers', [])
         }
     })
     .controller('acAttributeCtrl', function($rootScope, $scope, $http) {
+        $scope.attrList =[
+            {
+                id: 1,
+                name: 'role',
+                value: '角色'
+            },
+            {
+                id: 2,
+                name: 'userLevel',
+                value: '用户等级'
+            },
+            {
+                id: 3,
+                name: 'accessTime',
+                value: '访问时间'
+            },
+            {
+                id: 4,
+                name: 'group',
+                value: '分组'
+            }
+        ];
 
+
+        $scope.searchAttr = function(){
+
+        }
+
+        $scope.addAttr = function(){
+
+        }
     })
 
 ;
