@@ -7,58 +7,106 @@
         font-weight: lighter;
         text-align: center;
     }
+    .ac-delete {
+        border: none;
+        color: red;
+        background-color: white;
+    }
+    .ac-table-content {
+        text-align: center;
+    }
+
+    #ac-addPolicyName {
+        width:300px;
+        margin-left: 30px;
+    }
+    .ac-p {
+        margin-left:20px;
+    }
+
+    .error-message {
+        color: red;
+        margin-left:30px;
+    }
 </style>
-<div style="margin-top: 20px;">
-    <span style="color: gray; font-size: 1.1em">*满足以下策略的用户将被允许访问目标数据</span>
+<div style="margin-top: 20px; margin-left: 20px;">
     <div class="ac-operation">
         <form role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入查询内容" id="ac-attrKeyValue" style=" width: 200px;float: left;margin-right: 15px; margin-left: 20px;">
             </div>
             <button type="submit" class="btn btn-sm btn-info" ng-click="searchAttr()" style="margin-right: 10px">查询</button>
-            <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#acAttr">新增</a>
+            <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addAttr0">新增</a>
         </form>
     </div>
     <!-- Attribute List Modal -->
-    <div class="modal fade" id="addAttr" role="dialog">
+    <div class="modal fade" id="addAttr0" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content" style="width: 400px; margin-top: 100px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">添加属性</h4>
+                    <h4 class="modal-title" style="text-align: center">添加策略</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="height: 180px;">
                     <p class="ac-p">策略名：</p>
-                    <input type="text" id="ac-addBlackKey" placeholder="请输入用户名"/>
+                    <input type="text" id="ac-addPolicyName" placeholder="请输入策略名"/>
                     <p></p>
-                    <div ng-repeat="attr in attrList">
-                        <span>{{attr.name}}</span><input type="checkbox" name="ac-select-attr" id="{{attr.id}}">
+                    <p class="ac-p">请选择约束属性:</p>
+                    <p></p>
+                    <div ng-repeat="attr in attrList" style="float: left; width: 150px;margin-left:30px;margin-bottom: 5px;">
+                        <span style="width: 4em;">{{attr.value}}&nbsp&nbsp&nbsp</span><input type="checkbox" name="ac-select-attr" id="{{attr.id}}">
                     </div>
-
+                    <p></p>
+                    <div id="add-attr-error0" class="error-message"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default ac-add" ng-click="addAttr()">新增</button>
-                    <button type="button" class="btn btn-default ac-search" data-dismiss="modal">取消</button>
+                    <a class="btn btn-sm btn-info" data-toggle="modal" ng-click="showAddAttr()">下一步</a>
+                    <button type="button" class="btn btn-sm" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>
     </div>
-    <table class="table">
+    <!-- Attribute List Modal1 -->
+    <div class="modal fade" id="addAttr1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 400px; margin-top: 100px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center">添加策略</h4>
+                </div>
+                <div class="modal-body" style="height: 180px;" id="ac-add-attr-component">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="addAttr()">新增</button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">上一步</button>
+                    <button type="button" class="btn btn-sm" ng-click="cancelAddAttr()">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span style="color: gray; font-size: 1.1em; margin-left: 20px;">*满足以下策略的用户将被允许访问目标数据</span>
+    <table class="table" style="width: 80%; margin-left:20px; margin-top: 10px;">
         <thead class="ac-list">
         <tr>
+            <th>策略ID</th>
             <th>策略名</th>
             <th>描述</th>
-            <th>操作</th>
+            <th class="ac-table-content">操作</th>
         </tr>
         </thead>
         <tbody class="ac-list">
-        <!--<tr ng-repeat="item in attrList">-->
-            <!--<th>{{item.userRole==0?"管理员":"租户"}}</th>-->
-            <!--<th>{{item.startTime}}-{{item.endTime}}</th>-->
-            <!--<th style="padding-left:18px"><button class="ac-state" ng-click="changeState(item.ruleId)">{{item.state==1?"强制":"推荐"}}</button></th>-->
-            <!--<th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteAttr(item.ruleId)"></span></button></th>-->
-        <!--</tr>-->
+        <tr ng-repeat="item in ruleList">
+            <th>{{item.id}}</th>
+            <th>{{item.name}}</th>
+            <th style="width: 500px;">{{item.desc}}</th>
+            <th class="ac-table-content">
+                <button class="ac-delete"><span class="glyphicon glyphicon-cog" ng-click="changeAttr(item.id)"></span></button>
+                <button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteAttr(item.id)"></span></button>
+            </th>
+        </tr>
         </tbody>
     </table>
 </div>

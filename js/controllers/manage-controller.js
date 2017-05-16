@@ -254,36 +254,99 @@ angular.module('ac-manage.controllers', [])
         }
     })
     .controller('acAttributeCtrl', function($rootScope, $scope, $http) {
-        $scope.attrList =[
+        $scope.attrList = [
             {
-                id: 1,
+                id: 0,
                 name: 'role',
                 value: '角色'
             },
             {
-                id: 2,
+                id: 1,
                 name: 'userLevel',
                 value: '用户等级'
+            },
+            {
+                id: 2,
+                name: 'group',
+                value: '分组'
             },
             {
                 id: 3,
                 name: 'accessTime',
                 value: '访问时间'
+            }
+
+        ];
+
+        $scope.ruleList = [
+            {
+                id: 0,
+                name: 'policy0',
+                desc: '角色: 租户 ; 用户等级: 1 - 9 ; 访问时间: 08:00 - 20:00',
+                attrList: [0,1,2]
             },
             {
-                id: 4,
-                name: 'group',
-                value: '分组'
+                id: 1,
+                name: 'policy1',
+                desc: '角色: 管理员 ; 访问时间: 00:00 - 23:59',
+                attrList: [0,2]
+            },
+            {
+                id: 2,
+                name: 'policy2',
+                desc: '用户等级: 1 - 4 ; 分组: Group2',
+                attrList: [1,3]
+            },
+            {
+                id: 3,
+                name: 'policy3',
+                desc: '用户等级: 3 - 6 ; 访问时间: 09:00 - 11:00 ; 分组: Group4',
+                attrList: [1,2,3]
             }
         ];
 
-
         $scope.searchAttr = function(){
 
-        }
+        };
 
         $scope.addAttr = function(){
 
+        };
+
+        $scope.changeAttr = function(id){
+
+        };
+
+        $scope.deleteAttr = function(id){
+
+        };
+
+        $scope.showAddAttr = function(){
+            var policyName = $("#ac-addPolicyName").value;
+            if (policyName != null && policyName.length > 0) {
+                while (policyName.lastIndexOf(' ') >= 0) {
+                    policyName = policyName.replace(' ', '');
+                }
+                if (policyName.length == 0) {
+                    $("#add-attr-error0").innerHTML = '请输入有效的策略名';
+                } else {
+                    // TODO: 检测checkbox是否被选定
+                    var selectedAttr = document.getElementsByName('ac-select-attr');
+                    for(var i = 0; i < selectedAttr.length; i++){
+
+                    }
+                }
+            }else{
+                $("#add-attr-error0").innerHTML = '请输入有效的策略名';
+            }
+
+            $("#addAttr1").modal('show');
+        }
+
+        $scope.cancelAddAttr = function(){
+            $("#addAttr1").modal('hide');
+            $("#addAttr0").modal('hide');
+            $("#ac-add-attr").innerHTML='';
         }
     })
 
