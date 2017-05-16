@@ -318,7 +318,18 @@ angular.module('ac-manage.controllers', [])
                 if (policyName.length == 0) {
                     document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
                 } else {
-
+                    document.getElementById('add-attr-error0').innerHTML = '';
+                    var role = document.getElementById('ac-attr-role').value;
+                    console.log(role);
+                    var lowLevel = document.getElementById('ac-attr-low').value;
+                    console.log(lowLevel);
+                    var highLevel = document.getElementById('ac-attr-high').value;
+                    console.log(highLevel);
+                    var groupName = document.getElementById('ac-group-name').value;
+                    console.log(groupName);
+                    var startTime = document.getElementsByName('startTime')[0].value;
+                    var endTime = document.getElementsByName('endTime')[0].value;
+                    console.log(startTime+' ~ '+endTime);
                 }
             }else{
                 document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
