@@ -310,7 +310,19 @@ angular.module('ac-manage.controllers', [])
         };
 
         $scope.addAttr = function(){
+            var policyName = document.getElementById('ac-addPolicyName').value;
+            if (policyName != null && policyName.length > 0) {
+                while (policyName.lastIndexOf(' ') >= 0) {
+                    policyName = policyName.replace(' ', '');
+                }
+                if (policyName.length == 0) {
+                    document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
+                } else {
 
+                }
+            }else{
+                document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
+            }
         };
 
         $scope.changeAttr = function(id){
@@ -322,31 +334,7 @@ angular.module('ac-manage.controllers', [])
         };
 
         $scope.showAddAttr = function(){
-            var policyName = $("#ac-addPolicyName").value;
-            if (policyName != null && policyName.length > 0) {
-                while (policyName.lastIndexOf(' ') >= 0) {
-                    policyName = policyName.replace(' ', '');
-                }
-                if (policyName.length == 0) {
-                    $("#add-attr-error0").innerHTML = '请输入有效的策略名';
-                } else {
-                    // TODO: 检测checkbox是否被选定
-                    var selectedAttr = document.getElementsByName('ac-select-attr');
-                    for(var i = 0; i < selectedAttr.length; i++){
 
-                    }
-                }
-            }else{
-                $("#add-attr-error0").innerHTML = '请输入有效的策略名';
-            }
-
-            $("#addAttr1").modal('show');
-        }
-
-        $scope.cancelAddAttr = function(){
-            $("#addAttr1").modal('hide');
-            $("#addAttr0").modal('hide');
-            $("#ac-add-attr").innerHTML='';
         }
     })
 

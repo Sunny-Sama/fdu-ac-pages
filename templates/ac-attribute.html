@@ -48,41 +48,52 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title" style="text-align: center">添加策略</h4>
                 </div>
-                <div class="modal-body" style="height: 180px;">
-                    <p class="ac-p">策略名：</p>
+                <div class="modal-body">
+                    <p class="ac-p">策略名：*</p>
                     <input type="text" id="ac-addPolicyName" placeholder="请输入策略名"/>
                     <p></p>
-                    <p class="ac-p">请选择约束属性:</p>
+                    <p class="ac-p" style="color: red;">注：以下属性请至少选填一项</p>
+                    <span class="ac-p">请选择用户角色：</span>
+                    <select id="ac-attr-role">
+                        <option value="all" selected></option>
+                        <option value="tenant">租户</option>
+                        <option value="tenant">领导</option>
+                        <option value="tenant">管理员</option>
+                    </select>
                     <p></p>
-                    <div ng-repeat="attr in attrList" style="float: left; width: 150px;margin-left:30px;margin-bottom: 5px;">
-                        <span style="width: 4em;">{{attr.value}}&nbsp&nbsp&nbsp</span><input type="checkbox" name="ac-select-attr" id="{{attr.id}}">
-                    </div>
+                    <span class="ac-p">请选择用户等级：</span>
+                    <select id="ac-attr-low">
+                        <option value="0" selected></option>
+                        <option value="1">1级</option>
+                        <option value="2">2级</option>
+                        <option value="3">3级</option>
+                        <option value="4">4级</option>
+                        <option value="5">5级</option>
+                        <option value="6">6级</option>
+                    </select>
+                    <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
+                    <select id="ac-attr-high">
+                        <option value="0" selected></option>
+                        <option value="1">1级</option>
+                        <option value="2">2级</option>
+                        <option value="3">3级</option>
+                        <option value="4">4级</option>
+                        <option value="5">5级</option>
+                        <option value="6">6级</option>
+                    </select>
                     <p></p>
+                    <span class="ac-p">请输入用户分组：</span>
+                    <input type="text" placeholder="请精确输入组名">
+                    <p></p>
+                    <span class="ac-p">请选择访问时间：</span>
+                    <input type="time" name="startTime">
+                    <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
+                    <input type="time" name="endTime">
                     <div id="add-attr-error0" class="error-message"></div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-sm btn-info" data-toggle="modal" ng-click="showAddAttr()">下一步</a>
-                    <button type="button" class="btn btn-sm" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Attribute List Modal1 -->
-    <div class="modal fade" id="addAttr1" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content" style="width: 400px; margin-top: 100px">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">添加策略</h4>
-                </div>
-                <div class="modal-body" style="height: 180px;" id="ac-add-attr-component">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning btn-sm" ng-click="addAttr()">新增</button>
-                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">上一步</button>
-                    <button type="button" class="btn btn-sm" ng-click="cancelAddAttr()">取消</button>
+                    <a class="btn btn-warning btn-sm" data-toggle="modal" ng-click="addAttr()">新增</a>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>
