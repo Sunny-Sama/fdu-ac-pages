@@ -283,33 +283,55 @@ angular.module('ac-manage.controllers', [])
                 id: 0,
                 name: 'policy0',
                 desc: '角色: 租户 ; 用户等级: 1 - 9 ; 访问时间: 08:00 - 20:00',
-                attrList: [0,1,2]
+                attrList: ['0','1','2']
             },
             {
                 id: 1,
                 name: 'policy1',
                 desc: '角色: 管理员 ; 访问时间: 00:00 - 23:59',
-                attrList: [0,2]
+                attrList: ['0','2']
             },
             {
                 id: 2,
                 name: 'policy2',
                 desc: '用户等级: 1 - 4 ; 分组: Group2',
-                attrList: [1,3]
+                attrList: ['1','3']
             },
             {
                 id: 3,
                 name: 'policy3',
                 desc: '用户等级: 3 - 6 ; 访问时间: 09:00 - 11:00 ; 分组: Group4',
-                attrList: [1,2,3]
+                attrList: ['1','2','3']
             }
         ];
 
-        $scope.searchAttr = function(){
+        var parser = function(){
+            var array = $scope.ruleList;
+            for(var i = 0; i < array.length; i++){
+                var attrL = array[i].attrList;
+                for(var j = 0; j <attrL.length; j++){
+                    switch(attrL[j]){
+                        case '0':
 
-        };
+                            break;
+                        case '1':
+
+                            break;
+                        case '2':
+
+                            break;
+                        case '3':
+                            
+                            break;
+                    }
+                }
+            }
+        }
+
+        $scope.wholeRule = $scope.ruleList;
 
         $scope.addAttr = function(){
+            document.getElementById('add-attr-error0').innerHTML = '';
             var policyName = document.getElementById('ac-addPolicyName').value;
             if (policyName != null && policyName.length > 0) {
                 while (policyName.lastIndexOf(' ') >= 0) {
@@ -318,21 +340,103 @@ angular.module('ac-manage.controllers', [])
                 if (policyName.length == 0) {
                     document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
                 } else {
+                    var attrRole = false;
+                    var attrLevel = false;
+                    var attrName = false;
+                    var attrTime = false;
                     document.getElementById('add-attr-error0').innerHTML = '';
                     var role = document.getElementById('ac-attr-role').value;
-                    console.log(role);
+                    if(role != 'all')
+                        attrRole = true;
+
                     var lowLevel = document.getElementById('ac-attr-low').value;
-                    console.log(lowLevel);
                     var highLevel = document.getElementById('ac-attr-high').value;
-                    console.log(highLevel);
+                    if(lowLevel != '0' && highLevel != '0')
+                        attrLevel = true;
+
                     var groupName = document.getElementById('ac-group-name').value;
-                    console.log(groupName);
+                    if(groupName != null && groupName.length > 0){
+                        while (groupName.lastIndexOf(' ') >= 0) {
+                            groupName = groupName.replace(' ', '');
+                        }
+                        if(groupName.length != 0)
+                            attrName = true;
+                    }
+
                     var startTime = document.getElementsByName('startTime')[0].value;
                     var endTime = document.getElementsByName('endTime')[0].value;
-                    console.log(startTime+' ~ '+endTime);
+                    if(startTime != '' && endTime != '')
+                        attrTime = true;
+
+                    if(attrRole||attrLevel||attrName||attrTime){
+                        // 等级范围
+                        if(attrLevel)
+                            if(lowLevel > highLevel){
+                                var p = document.createElement('p');
+                                p.innerHTML = '请输入正确的等级范围';
+                                document.getElementById('add-attr-error0').appendChild(p);
+                                attrLevel = false;
+                            }
+                        // 组名
+                        if(attrName){
+                            var exist = true; // isExist();
+                            if(!exist){
+                                var p = document.createElement('p');
+                                p.innerHTML = '您填写的分组不存在';
+                                document.getElementById('add-attr-error0').appendChild(p);
+                                attrName = false;
+                            }
+                        }
+                        // 时间范围
+                        if(attrTime){
+                            var tmp = startTime.split(':');
+                            var startH = tmp[0] - 0;
+                            var startM = tmp[1] - 0;
+
+                            tmp = endTime.split(':');
+                            var endH = tmp[0] - 0;
+                            var endM = tmp[1] - 0;
+
+                            if(endH < startH || (endH == startH && endM <= startM)){
+                                var p = document.createElement('p');
+                                p.innerHTML = '请输入正确的时间范围';
+                                document.getElementById('add-attr-error0').appendChild(p);
+                                attrTime = false;
+                            }
+                        }
+
+                        if(attrRole || attrLevel || attrName || attrTime){
+                            // TODO: 传送到服务器
+                        }
+                    }
+                    else{
+                        document.getElementById('add-attr-error0').innerHTML = '请至少选填一项属性';
+                    }
                 }
             }else{
                 document.getElementById('add-attr-error0').innerHTML = '请输入有效的策略名';
+            }
+        };
+
+        $scope.searchAttr = function(){
+            var searchKey = document.getElementById('ac-attrKeyValue').value;
+            if (searchKey != null && searchKey.length > 0) {
+                while (searchKey.lastIndexOf(' ') >= 0) {
+                    searchKey = searchKey.replace(' ', '');
+                }
+                if (searchKey.length == 0) {
+                    $scope.ruleList = $scope.wholeRule;
+                } else {
+                    var tmp = new Array();
+                    for (var i = 0; i < $scope.wholeRule.length; i++) {
+                        if (($scope.wholeRule[i].id + '').indexOf(searchKey) >= 0 || $scope.wholeRule[i].name.indexOf(searchKey) >= 0 || $scope.wholeRule[i].desc.indexOf(searchKey) >= 0) {
+                            tmp.push($scope.wholeRule[i]);
+                        }
+                    }
+                    $scope.ruleList = tmp;
+                }
+            } else {
+                $scope.ruleList = $scope.wholeRule;
             }
         };
 
@@ -341,12 +445,8 @@ angular.module('ac-manage.controllers', [])
         };
 
         $scope.deleteAttr = function(id){
-
+            // TODO: 服务器删除
         };
-
-        $scope.showAddAttr = function(){
-
-        }
     })
 
 ;
