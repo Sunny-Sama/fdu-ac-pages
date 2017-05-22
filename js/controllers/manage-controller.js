@@ -253,7 +253,11 @@ angular.module('ac-manage.controllers', [])
             }
         }
     })
+
+
     .controller('acAttributeCtrl', function($rootScope, $scope, $http) {
+
+        $scope.isAddState = true;
         $scope.attrList = [
             {
                 id: 0,
@@ -280,52 +284,85 @@ angular.module('ac-manage.controllers', [])
 
         $scope.ruleList = [
             {
-                id: 0,
+                id: '0',
                 name: 'policy0',
-                desc: '角色: 租户 ; 用户等级: 1 - 9 ; 访问时间: 08:00 - 20:00',
-                attrList: ['0','1','2']
+                desc: '角色: 租户 ; 用户等级: 1 - 6 ; 访问时间: 08:00 - 20:00',
+                attrList: ['0','1','3']
             },
             {
-                id: 1,
+                id: '1',
                 name: 'policy1',
                 desc: '角色: 管理员 ; 访问时间: 00:00 - 23:59',
-                attrList: ['0','2']
+                attrList: ['0','3']
             },
             {
-                id: 2,
+                id: '2',
                 name: 'policy2',
                 desc: '用户等级: 1 - 4 ; 分组: Group2',
-                attrList: ['1','3']
+                attrList: ['1','2']
             },
             {
-                id: 3,
+                id: '3',
                 name: 'policy3',
-                desc: '用户等级: 3 - 6 ; 访问时间: 09:00 - 11:00 ; 分组: Group4',
+                desc: '用户等级: 3 - 6 ; 分组: Group4 ;  访问时间: 09:00 - 11:00',
                 attrList: ['1','2','3']
             }
         ];
 
-        var parser = function(){
-            var array = $scope.ruleList;
-            for(var i = 0; i < array.length; i++){
-                var attrL = array[i].attrList;
+        var parser = function(node){
+            // var node = {
+            //     id: 0,
+            //     name: 'policy0',
+            //     desc: '角色: 租户 ; 用户等级: 1 - 6 ; 访问时间: 08:00 - 20:00',
+            //     attrList: ['0','1','3']
+            // };
+                var result = {};
+                result['attrList'] = node.attrList;
+                var stringList = node.desc.split(' ; ');
+                var attrL = node.attrList;
                 for(var j = 0; j <attrL.length; j++){
                     switch(attrL[j]){
                         case '0':
-
+                            var index = stringList[j].indexOf('角色: ');
+                            var rs = stringList[j].substring(index + 4);
+                            var role = ''; //push
+                            switch(rs){
+                                case '租户':
+                                    role = 'tenant';
+                                    break;
+                                case '管理员':
+                                    role = 'admin';
+                                    break;
+                                case '领导':
+                                    role = 'leader';
+                                    break;
+                            }
+                            result['role'] = role;
                             break;
                         case '1':
-
+                            var index = stringList[j].indexOf('用户等级: ');
+                            var ls = stringList[j].substring(index + 6);
+                            var low = ls.split(' - ')[0];
+                            var high = ls.split(' - ')[1];
+                            result['low'] = low;
+                            result['high'] = high;
                             break;
                         case '2':
-
+                            var index = stringList[j].indexOf('分组: ');
+                            var group = stringList[j].substring(index + 4);
+                            result['group'] = group;
                             break;
                         case '3':
-                            
+                            var index = stringList[j].indexOf('访问时间: ');
+                            var time = stringList[j].substring(index + 6);
+                            var start = time.split(' - ')[0];
+                            var end = time.split(' - ')[1]
+                            result['start'] = start;
+                            result['end'] = end;
                             break;
                     }
                 }
-            }
+            return result;
         }
 
         $scope.wholeRule = $scope.ruleList;
@@ -406,7 +443,13 @@ angular.module('ac-manage.controllers', [])
                         }
 
                         if(attrRole || attrLevel || attrName || attrTime){
-                            // TODO: 传送到服务器
+                            if($scope.isAddState) {
+                                // TODO: 传送到服务器 add
+                            }else{
+                                // TODO: 传送到服务器 change
+                                $scope.isAddState = true;
+                                $('#addAttr').modal('hide');
+                            }
                         }
                     }
                     else{
@@ -440,8 +483,51 @@ angular.module('ac-manage.controllers', [])
             }
         };
 
-        $scope.changeAttr = function(id){
+        var getRuleById = function (id) {
+            for(var i = 0; i < $scope.ruleList.length; i++){
+                if($scope.ruleList[i].id == id)
+                    return $scope.ruleList[i];
+            }
+        }
 
+        var getSelectIndex = function(role){
+            switch (role){
+                case 'tenant':
+                    return 1;
+                case 'leader':
+                    return 2;
+                case 'admin':
+                    return 3;
+                default:
+                    return 0;
+            }
+        }
+
+        $scope.changeAttr = function(id){
+            $scope.isAddState = false;
+            var rule = getRuleById(id);
+            var node = parser(rule);
+            document.getElementById('ac-addPolicyName').value = rule.name;
+            for(var i = 0; i < node.attrList.length; i++){
+                switch(node.attrList[i]){
+                    case '0':
+                        var index = getSelectIndex(node.role);
+                        document.getElementById('ac-attr-role')[index].selected = true;
+                        break;
+                    case '1':
+                        document.getElementById('ac-attr-low')[Number(node.low)].selected = true;
+                        document.getElementById('ac-attr-high')[Number(node.high)].selected = true;
+                        break;
+                    case '2':
+                        document.getElementById('ac-group-name').value = node.group;
+                        break;
+                    case '3':
+                        document.getElementsByName('startTime')[0].value = node.start;
+                        document.getElementsByName('endTime')[0].value = node.end;
+                        break;
+                }
+            }
+            $('#addAttr').modal('show');
         };
 
         $scope.deleteAttr = function(id){

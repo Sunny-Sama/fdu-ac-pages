@@ -16,7 +16,7 @@
         text-align: center;
     }
 
-    #ac-addPolicyName {
+    #ac-addPolicyName{
         width:300px;
         margin-left: 30px;
     }
@@ -36,17 +36,18 @@
                 <input type="text" class="form-control" placeholder="请输入查询内容" id="ac-attrKeyValue" style=" width: 200px;float: left;margin-right: 15px; margin-left: 20px;">
             </div>
             <button type="submit" class="btn btn-sm btn-info" ng-click="searchAttr()" style="margin-right: 10px">查询</button>
-            <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addAttr0">新增</a>
+            <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#addAttr">新增</a>
         </form>
     </div>
     <!-- Attribute List Modal -->
-    <div class="modal fade" id="addAttr0" role="dialog">
+    <div class="modal fade" id="addAttr" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content" style="width: 400px; margin-top: 100px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">添加策略</h4>
+                    <h4 ng-if="isAddState == true" class="modal-title" style="text-align: center">添加策略</h4>
+                    <h4 ng-if="isAddState == false" class="modal-title" style="text-align: center">修改策略</h4>
                 </div>
                 <div class="modal-body">
                     <p class="ac-p">策略名：*</p>
@@ -57,8 +58,8 @@
                     <select id="ac-attr-role">
                         <option value="all" selected></option>
                         <option value="tenant">租户</option>
-                        <option value="tenant">领导</option>
-                        <option value="tenant">管理员</option>
+                        <option value="leader">领导</option>
+                        <option value="admin">管理员</option>
                     </select>
                     <p></p>
                     <span class="ac-p">请选择用户等级：</span>
@@ -92,11 +93,13 @@
                     <div id="add-attr-error0" class="error-message"></div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-warning btn-sm" data-toggle="modal" ng-click="addAttr()">新增</a>
+                    <a ng-if="isAddState == true" class="btn btn-warning btn-sm" data-toggle="modal" ng-click="addAttr()">新增</a>
+                    <a ng-if="isAddState == false" class="btn btn-warning btn-sm" data-toggle="modal" ng-click="addAttr()">修改</a>
                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <span style="color: gray; font-size: 1.1em; margin-left: 20px;">*满足以下策略的用户将被允许访问目标数据</span>
     <table class="table" style="width: 80%; margin-left:20px; margin-top: 10px;">
