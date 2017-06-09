@@ -76,7 +76,7 @@
     }
 
     .ac-table-list{
-        width: 270px;
+        width: 400px;
         height:70px;
         border: 1px solid #e2e2e4;
         margin: 10px;
@@ -185,8 +185,8 @@
         <div class="fdu-main-tables">
             <div class="ac-showTables" id="ac-showTables">
                 <div class="ac-table-list" ng-repeat="table in tableList" ng-if="table.level >= lowLevel && table.level <= highLevel">
-                    <div style="background-color: rgba(226,226,228,0.63); font-weight: 500"><span style="padding-left:15px;">数据资源名</span><span style="padding-left: 90px;">等级</span><span style="padding-left:25px;">选择</span></div>
-                    <div style="line-height: 50px; margin-left: 15px; width: 150px; overflow: hidden; text-overflow:ellipsis; float: left;"><span>{{table.tableName}}</span></div>
+                    <div style="background-color: rgba(226,226,228,0.63); font-weight: 500"><span style="padding-left:15px;">数据资源名</span><span style="padding-left: 190px;">等级</span><span style="padding-left:25px;">选择</span></div>
+                    <div style="line-height: 50px; margin-left: 15px; width: 250px; overflow: hidden; text-overflow:ellipsis; float: left;"><span>{{table.tableName}}</span></div>
                     <span style="line-height: 50px; color: #6596F8; margin-left:10px; margin-right:20px;">{{table.level}}级</span>
                     <input type="checkbox" name="ac-select-list" id="{{table.tableId}}" style="line-height: 50px; width: 15px; height: 15px; margin-left:10px;">
                 </div>

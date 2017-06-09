@@ -14,16 +14,36 @@ angular.module('ac-manage.controllers', [])
 
         $scope.whiteList = [{
             ruleId: '0',
-            userId: 'user1' //可以是用户名也可以是用户id
+            userName: '用户18362',
+            userId: '18362' //可以是用户名也可以是用户id
         }, {
             ruleId: '1',
-            userId: 'user2'
+            userName: 'leader',
+            userId: '11'
         }, {
             ruleId: '2',
-            userId: 'user3'
+            userName: 'admin',
+            userId: '2'
         }, {
             ruleId: '3',
-            userId: 'user4'
+            userName: '用户17934',
+            userId: '17934'
+        },{
+            ruleId: '4',
+            userName: '用户84362',
+            userId: '84362'
+        },{
+            ruleId: '5',
+            userName: '用户18273',
+            userId: '18273'
+        },{
+            ruleId: '6',
+            userName: '用户25364',
+            userId: '25364'
+        },{
+            ruleId: '7',
+            userName: '用户45664',
+            userId: '45664'
         }];
 
         $scope.blackList = [{

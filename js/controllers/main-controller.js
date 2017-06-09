@@ -117,98 +117,110 @@ angular.module('myApp.controllers', [])
 
 	$scope.catalogList = [{
 		id: 0,
-		name: '节点0',
+		name: '医疗',
 		parent_id: -1
 	}, {
 		id: 1,
-		name: '节点1',
+		name: '教育',
 		parent_id: -1
 	}, {
 		id: 2,
-		name: '节点2',
+		name: '经济学',
 		parent_id: -1
 	}, {
 		id: 3,
-		name: '节点3',
+		name: '人口普查',
 		parent_id: -1
 	}, {
-		id: 4,
-		name: '节点0-1',
-		parent_id: 0
+        id: 4,
+        name: '公共卫生',
+        parent_id: -1
 	}, {
 		id: 5,
-		name: '节点0-0',
+		name: '电子病历',
 		parent_id: 0
 	}, {
 		id: 6,
-		name: '节点0-2',
+		name: '药品统计',
 		parent_id: 0
 	}, {
 		id: 7,
-		name: '节点1-0',
-		parent_id: 1
+		name: '医疗设施',
+		parent_id: 0
 	}, {
 		id: 8,
-		name: '节点3-0',
-		parent_id: 3
-	}, {
+		name: '历年分数线',
+		parent_id: 1
+	},  {
 		id: 9,
-		name: '节点3-1',
-		parent_id: 3
+		name: '概率统计',
+		parent_id: 2
 	}, {
 		id: 10,
-		name: '节点3-0-1',
-		parent_id: 8
+		name: '股票证券',
+		parent_id: 2
+	}, {
+        id: 11,
+        name: '高校招生比',
+        parent_id: 1
 	}];
 
 	$scope.tableList = [{
 		tableId: '0',
-		level: 6,
-		tableName: 'table0table0table0table0table0table0'
+		level: 5,
+		tableName: '上海市XX医院病历单2017年1月'
 	}, {
 		tableId: '1',
 		level: 5,
-		tableName: 'table1table1table1table1'
+		tableName: '上海市XX医院病历单2017年2月'
 	}, {
 		tableId: '2',
-		level: 4,
-		tableName: 'table2table2table2table2table2'
+		level: 5,
+		tableName: '上海市XX医院病历单2017年3月'
 	}, {
 		tableId: '3',
-		level: 3,
-		tableName: 'table3'
+		level: 5,
+		tableName: '上海市XX医院病历单2017年4月'
 	}, {
 		tableId: '4',
 		level: 2,
-		tableName: 'table4table4'
+		tableName: '上海市XX医院医疗设施汇总表'
 	}, {
 		tableId: '5',
-		level: 1,
-		tableName: 'table5table5table5'
+		level: 2,
+		tableName: '上海医院信息汇总表'
 	}, {
 		tableId: '6',
-		level: 2,
-		tableName: 'table6'
+		level: 4,
+		tableName: '上海市XX医院药品购入表2017年1月'
 	}, {
 		tableId: '7',
-		level: 3,
-		tableName: 'table7'
+		level: 4,
+		tableName: '上海市XX医院药品购入表2017年2月'
 	}, {
 		tableId: '8',
 		level: 4,
-		tableName: 'table8table8table8table8'
+		tableName: '上海市XX医院药品购入表2017年3月'
 	}, {
 		tableId: '9',
-		level: 2,
-		tableName: '数据资源9'
+		level: 4,
+		tableName: '上海市XX医院药品购入表2017年4月'
 	}, {
 		tableId: '10',
-		level: 5,
-		tableName: '数据资源10'
+		level: 3,
+		tableName: '上海市XX医院药品售出表2017年1月'
 	}, {
 		tableId: '11',
 		level: 3,
-		tableName: '数据资源11: table11'
+		tableName: '上海市XX医院药品售出表2017年2月'
+	},{
+        tableId: '12',
+		level: 3,
+		tableName: '上海市XX医院药品售出表2017年3月'
+    },{
+        tableId: '13',
+        level: 3,
+        tableName: '上海市XX医院药品售出表2017年4月'
 	}];
 
     $scope.wholeCatalogs = $scope.catalogList;
