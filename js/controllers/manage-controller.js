@@ -48,12 +48,15 @@ angular.module('ac-manage.controllers', [])
 
         $scope.blackList = [{
             ruleId: '6',
+            userName: '用户23211',
             userId: 'user5'
         }, {
             ruleId: '7',
+            userName: '用户84734',
             userId: 'user6'
         }, {
             ruleId: '8',
+            userName: '用户39445',
             userId: 'user7'
         } ];
 
