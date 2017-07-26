@@ -48,6 +48,7 @@
                             </div>
                             <button type="submit" class="btn btn-sm btn-info" ng-click="searchWhite()" style="margin-right: 10px">查询</button>
                             <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ac-addWhite">新增</a>
+                            <a class="btn btn-default" style="float: right; margin-right: 20px">IP地址白名单</a>
                         </form>
                     </div>
                     <!-- White List Modal -->
@@ -67,6 +68,11 @@
                                     <p style="color: #777; margin-left: 30px;">
                                         请精确输入用户名，否则无法正确查询
                                     </p>
+                                    <p class="ac-p">
+                                        是否可导出试验场：
+                                    </p>
+                                    <label style="color: #777; margin-left: 30px; font-weight: normal">是<input name="derivable" type="radio" value="1" style="margin-left: 10px"/></label>
+                                    <label style="color: #777; margin-left: 30px; font-weight: normal">否<input name="derivable" type="radio" value="0" style="margin-left: 10px" checked="checked"/></label>
                                     <div class="error-message" id="ac-white-error"></div>
                                 </div>
                                 <div class="modal-footer">

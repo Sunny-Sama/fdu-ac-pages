@@ -57,8 +57,6 @@ angular.module('ac-manage.controllers', [])
             userId: 'user7'
         } ];
 
-        $scope.wholeWhite = $scope.whiteList;
-        $scope.wholeBlack = $scope.blackList;
 
         // 获取当前表格的白名单列表
         var getWhiteList = function() {
@@ -80,6 +78,10 @@ angular.module('ac-manage.controllers', [])
                     alert('http error: 不能获取白名单');
                 });
         };
+
+
+        $scope.wholeWhite = getWhiteList();
+        $scope.wholeBlack = $scope.blackList;
 
         var getBlackList = function() {
             var tables = getTableIdList();
