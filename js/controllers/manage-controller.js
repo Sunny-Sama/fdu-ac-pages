@@ -58,7 +58,66 @@ angular.module('ac-manage.controllers', [])
             ruleId: '8',
             userName: '用户39445',
             userId: 'user7'
-        } ];
+        },{
+            ruleId: '6',
+            userName: '用户23211',
+            userId: 'user5'
+        }, {
+            ruleId: '7',
+            userName: '用户84734',
+            userId: 'user6'
+        }, {
+            ruleId: '8',
+            userName: '用户39445',
+            userId: 'user7'
+        },
+            {
+                ruleId: '6',
+                userName: '用户23211',
+                userId: 'user5'
+            }, {
+                ruleId: '7',
+                userName: '用户84734',
+                userId: 'user6'
+            }, {
+                ruleId: '8',
+                userName: '用户39445',
+                userId: 'user7'
+            },
+            {
+                ruleId: '6',
+                userName: '用户23211',
+                userId: 'user5'
+            }, {
+                ruleId: '7',
+                userName: '用户84734',
+                userId: 'user6'
+            }
+        ];
+
+        $scope.authList = [
+            {
+                userName: '用户23133',
+                time: '2017-06-05 20:00'
+            },
+            {
+                userName: '用户39817',
+                time: '2017-06-08 10:00'
+            },
+            {
+                userName: '用户93123',
+                time: '2017-06-10 04:00'
+            },
+            {
+                userName: '用户87457',
+                time: '2017-06-23 11:00'
+            },
+            {
+                userName: '用户47103',
+                time: '2017-06-30 12:00'
+            },
+
+        ];
 
 
         // 获取当前表格的白名单列表
@@ -83,7 +142,7 @@ angular.module('ac-manage.controllers', [])
         };
 
 
-        $scope.wholeWhite = getWhiteList();
+        $scope.wholeWhite = $scope.whiteList;
         $scope.wholeBlack = $scope.blackList;
 
         var getBlackList = function() {
@@ -109,6 +168,18 @@ angular.module('ac-manage.controllers', [])
         // 获取当前table的白名单和黑名单
         // getWhiteList();
         // getBlackList();
+
+        $scope.addBlackFromUser = function () {
+            
+        }
+        
+        $scope.deleteRuleFromUser = function () {
+            
+        }
+        
+        $scope.searchBlackFromUser = function () {
+            
+        }
 
         $scope.searchWhite = function() {
             var searchKey = document.getElementById('ac-whiteKeyValue').value;

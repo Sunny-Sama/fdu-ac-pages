@@ -1,8 +1,8 @@
 <style>
-    .ac-list tr{
+    .ac-list th{
         color: gray;
-        font-weight: lighter;
-        text-align: center;
+        font-weight: normal !important;
+        text-align: center !important;
     }
 
     .ac-delete {
@@ -15,7 +15,7 @@
         margin-bottom: 20px;
     }
 
-    #ac-addWhiteKey, #ac-addBlackKey{
+    #ac-addWhiteKey, #ac-addBlackKey, #ac-addBlackKey-user{
         width:300px;
         margin-left: 30px;
     }
@@ -48,9 +48,102 @@
                             </div>
                             <button type="submit" class="btn btn-sm btn-info" ng-click="searchWhite()" style="margin-right: 10px">查询</button>
                             <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ac-addWhite">新增</a>
-                            <a class="btn btn-default" style="float: right; margin-right: 20px">IP地址白名单</a>
+                            <a class="btn btn-default" style="float: right; margin-right: 20px" data-toggle="modal" data-target="#ac-userBlack">IP地址白名单</a>
                         </form>
                     </div>
+                    <!-- User Black List Modal -->
+                    <div class="modal fade" id="ac-userBlack" role="dialog">
+                        <div class="modal-dialog" style="width: 800px;">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="width: 800px; margin-top: 100px">
+                                <div class="modal-body" style="height: 600px">
+                                    <div id="user-black-left" style="width: 380px; float: left; height: 570px;border-right: solid #ccc 2px;">
+                                        <h4 style="width: 7em; margin-left: auto; margin-right:auto; margin-bottom: 20px;">用户黑名单列表</h4>
+                                        <input type="text" class="form-control" placeholder="请输入用户名或用户id" id="ac-user-black-key" style=" width: 200px;float: left;margin-right: 15px; margin-left: 20px;">
+                                        <a class="btn btn-sm btn-info" style="margin-right: 10px;" ng-click="searchBlackFromUser()">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </a>
+                                        <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ac-userBlack-add">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                        <div style="height: 500px; width: 100%; overflow-y: scroll">
+                                            <table style="width: 90%; margin: 20px auto;">
+                                                <thead class="ac-list">
+                                                <tr style="background: #eee; height: 2em;">
+                                                    <th>用户ID</th>
+                                                    <th>用户名</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ac-list">
+                                                <tr ng-repeat="item in blackList" style="height: 2em; border-bottom: solid #eee 1px;">
+                                                    <th>{{item.userId}}</th>
+                                                    <th>{{item.userName}}</th>
+                                                    <th><button class="ac-delete"><span class="glyphicon glyphicon-trash" ng-click="deleteRuleFromUser(item.ruleId)"></span></button></th>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div id="user-black-right" style="width: 380px; float: right;">
+                                        <h4 style="width: 6em; margin-left: auto; margin-right:auto;">平台授权记录</h4>
+                                        <p style="color: gray; margin: 0 auto 5px auto; width: 90%;">&nbsp&nbsp&nbsp&nbsp如果需要撤回某位用户对该数据的使用权限，请在左侧添加该用户的黑名单</p>
+                                        <div style="height: 500px; width: 100%; overflow-y: scroll">
+                                            <table style="width: 90%; margin: 20px auto;">
+                                                <thead class="ac-list">
+                                                <tr style="background: #eee; height: 2em;">
+                                                    <th>用户名</th>
+                                                    <th>授权时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="ac-list">
+                                                <tr ng-repeat="item in authList" style="height: 2em; border-bottom: solid #eee 1px;">
+                                                    <th>{{item.userName}}</th>
+                                                    <th>{{item.time}}</th>
+                                                    <th></th>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- User Black Add Modal -->
+                    <div class="modal fade" id="ac-userBlack-add" role="dialog">
+                        <div class="modal-dialog" style="width: 400px">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="width: 400px; margin-top: 150px">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="text-align: center">添加用户</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="ac-p">用户名：</p>
+                                    <input type="text" id="ac-addBlackKey-user" placeholder="请输入用户名"/>
+                                    <p></p>
+                                    <p style="color: #777; margin-left: 30px;">
+                                        注：请精确输入用户名，否则无法正确查询
+                                    </p>
+                                    <div class="error-message" id="ac-black-error-user"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning btn-sm" ng-click="addBlackFromUser()">新增</button>
+                                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                     <!-- White List Modal -->
                     <div class="modal fade" id="ac-addWhite" role="dialog">
                         <div class="modal-dialog">
